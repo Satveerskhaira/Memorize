@@ -9,17 +9,16 @@
 import Foundation
 
 class EmojiMemoryGame: ObservableObject {
-    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
-    
-    // Convenient method to create game model
-    static func createMemoryGame() -> MemoryGame<String> {
-        var theme = createTheme()
-        theme.emoji.shuffle()
-        return MemoryGame<String>(numberOfPairsOfCards: theme.numberOfCards , theme: theme) { pairIndex in
-            return theme.emoji[pairIndex]
+    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame(with: EmojiMemoryGame.themes.randomElement()!)
+
+    // Convenient method to create game model - change to init in future
+    static func createMemoryGame(with theme: Theme) -> MemoryGame<String> {
+        return MemoryGame<String>(numberOfPairsOfCards: (theme.numberOfCards ?? Int.random(in: 4..<8)) , theme: theme) { pairIndex in
+            return theme.emoji.shuffled()[pairIndex]
         }
     }
     
+ 
     // MARK: - Access model
     var cards: [MemoryGame<String>.Card] {
         model.cards
@@ -40,18 +39,15 @@ class EmojiMemoryGame: ObservableObject {
     
     // MARK: - New game
     func newGame() {
-        model = EmojiMemoryGame.createMemoryGame()
+        model = EmojiMemoryGame.createMemoryGame(with: EmojiMemoryGame.themes.randomElement()!)
     }
-   // MARK: - Themes
     
-   static func createTheme() -> Theme {
-        var themes = [Theme]()
-        themes.append(Theme(name: "Halloween", numberOfCards: 8, emoji: ["👻","🎃","☠️","💀","😈","✂️","👣","🧟‍♀️","🧟‍♂️","🦹🏿‍♀️","🥼","🦹🏻‍♂️","💉"], color: .orange))
-        themes.append(Theme(name: "Faces" , numberOfCards: 12, emoji: ["😀","😁","😅","😂","🤣","😇","🙃","😌","😚","😛","😝","🤪","🤨","😎","🤩","🧐","😖","😭","🥳","😣","😳","😠"], color: .blue))
-        themes.append(Theme(name: "Flags", numberOfCards: 6, emoji: ["🇹🇩","🇲🇷","🇲🇻","🏁","🇨🇦","🇹🇹","🇹🇼","🇦🇺","🇯🇲","🇻🇳","🇨🇭","🇹🇭","🇦🇹","🇹🇯","🇨🇷","🇨🇨","🇬🇧"], color: .gray))
-        themes.append(Theme(name: "Games", numberOfCards: 15, emoji: ["⚽️","🏀","🏈","⚾️","🎱","🏓","🏸","🏒","🏏","⛳️","🪁","🎣","🥊","⛸","🥌","⛷","🚴‍♀️","🛹","🏐","🏉","🥏","🏂","🏹"], color: .blue))
-        themes.append(Theme(name: "Symbols", numberOfCards: 6, emoji: ["®","©","℗","№","℔","℥","ℨ","ℬ","µ","Ω","ℹ︎","ℌ","ℑ","℞","ℳ","℀","℁","℅","℆","™","℠"], color: .red))
-        themes.append(Theme(name: "Animals", numberOfCards: Int.random(in: 3..<10), emoji: ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🦄","🐙","🦕","🦑","🦉","🦞","🐒"], color: .yellow))
-        return themes.randomElement()!
-    }
+    // MARK: - Themes
+    static private var themes = [(Theme(name: "Halloween", numberOfCards: 8, emoji: ["👻","🎃","☠️","💀","😈","✂️","👣","🧟‍♀️","🧟‍♂️","🦹🏿‍♀️","🥼","🦹🏻‍♂️","💉"], color: .orange)),
+                                 (Theme(name: "Faces" , numberOfCards: 12, emoji: ["😀","😁","😅","😂","🤣","😇","🙃","😌","😚","😛","😝","🤪","🤨","😎","🤩","🧐","😖","😭","🥳","😣","😳","😠"], color: .blue)),
+                                 (Theme(name: "Flags", numberOfCards: 6, emoji: ["🇹🇩","🇲🇷","🇲🇻","🏁","🇨🇦","🇹🇹","🇹🇼","🇦🇺","🇯🇲","🇻🇳","🇨🇭","🇹🇭","🇦🇹","🇹🇯","🇨🇷","🇨🇨","🇬🇧"], color: .gray)),
+                                 (Theme(name: "Games", numberOfCards: 15, emoji: ["⚽️","🏀","🏈","⚾️","🎱","🏓","🏸","🏒","🏏","⛳️","🪁","🎣","🥊","⛸","🥌","⛷","🚴‍♀️","🛹","🏐","🏉","🥏","🏂","🏹"], color: .blue)),
+                                 (Theme(name: "Symbols", numberOfCards: 6, emoji: ["®","©","℗","№","℔","℥","ℨ","ℬ","µ","Ω","ℹ︎","ℌ","ℑ","℞","ℳ","℀","℁","℅","℆","™","℠"], color: .red)),
+                                 (Theme(name: "Animals", emoji: ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🦄","🐙","🦕","🦑","🦉","🦞","🐒"], color: .yellow))
+    ]
 }

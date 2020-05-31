@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Theme {
     var name: String
-    var numberOfCards: Int
+    var numberOfCards: Int?
     var emoji: [String]
     var color: Color
 }

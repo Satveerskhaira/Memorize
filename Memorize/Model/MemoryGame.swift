@@ -32,13 +32,18 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
                     cards[chosenIndex].isMatched = true
                     // increse score
                     score += 2
+                } else {
+                    if cards[chosenIndex].isSeen {
+                        score -= 1
+                    }
+                    if cards[potentialMatchIndex].isSeen {
+                        score -= 1
+                    }
                 }
                 self.cards[chosenIndex].isFaceUp = true
                 self.cards[chosenIndex].isSeen = true
             } else {
-                if cards[chosenIndex].isSeen {
-                    score -= 1
-                }
+                
                 oneAndOnlyOneCardFaceUp = chosenIndex
             }
         }
@@ -62,9 +67,7 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         var content: CardContent
         var id =  UUID()
         var isSeen = false
-    }
-    
-    
+    } 
 }
 
 
