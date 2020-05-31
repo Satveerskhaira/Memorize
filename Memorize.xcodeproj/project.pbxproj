@@ -20,6 +20,8 @@
 		7AD5731F247CDC280047883E /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD5731E247CDC280047883E /* Grid.swift */; };
 		7AD57321247CE4CA0047883E /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD57320247CE4CA0047883E /* GridLayout.swift */; };
 		7AD573242482E12A0047883E /* Array+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD573232482E12A0047883E /* Array+Identifiable.swift */; };
+		7AD57326248324650047883E /* Array+Only.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD57325248324650047883E /* Array+Only.swift */; };
+		7AD5732824834FCB0047883E /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD5732724834FCB0047883E /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		7AD5731E247CDC280047883E /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		7AD57320247CE4CA0047883E /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		7AD573232482E12A0047883E /* Array+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Identifiable.swift"; sourceTree = "<group>"; };
+		7AD57325248324650047883E /* Array+Only.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Only.swift"; sourceTree = "<group>"; };
+		7AD5732724834FCB0047883E /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				7AD57315247B57CF0047883E /* MemoryGame.swift */,
+				7AD5732724834FCB0047883E /* Theme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				7AD573232482E12A0047883E /* Array+Identifiable.swift */,
+				7AD57325248324650047883E /* Array+Only.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,9 +323,11 @@
 				7AD572E6247ADD990047883E /* AppDelegate.swift in Sources */,
 				7AD572E8247ADD990047883E /* SceneDelegate.swift in Sources */,
 				7AD57316247B57CF0047883E /* MemoryGame.swift in Sources */,
+				7AD57326248324650047883E /* Array+Only.swift in Sources */,
 				7AD572EA247ADD990047883E /* EmojiMemoryGameView.swift in Sources */,
 				7AD57318247B58120047883E /* EmojiMemoryGame.swift in Sources */,
 				7AD573242482E12A0047883E /* Array+Identifiable.swift in Sources */,
+				7AD5732824834FCB0047883E /* Theme.swift in Sources */,
 				7AD57321247CE4CA0047883E /* GridLayout.swift in Sources */,
 				7AD5731F247CDC280047883E /* Grid.swift in Sources */,
 			);

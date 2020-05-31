@@ -8,17 +8,45 @@
 
 import Foundation
 
-struct MemoryGame<CardContent> {
+struct MemoryGame<CardContent> where CardContent: Equatable {
     var cards: [Card]
+    var themeName: String
+    var score: Int = 0
     
-    mutating func choose(card: Card) {
-        if let chosenIndex = cards.firstIndex(matching: card) {
-                self.cards[chosenIndex].isFaceUp = !self.cards[chosenIndex].isFaceUp
+    var oneAndOnlyOneCardFaceUp: Int? {
+        get { cards.indices.filter { cards[$0].isFaceUp }.only }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = index == newValue
+            }
         }
     }
     
-    init(numberOfPairsOfCards: Int, cardContentFactory: (Int) ->CardContent) {
+    mutating func choose(card: Card) {
+        if let chosenIndex = cards.firstIndex(matching: card),!cards[chosenIndex].isFaceUp, !cards[chosenIndex].isMatched {
+            // get card if already selected
+            
+            if let potentialMatchIndex = oneAndOnlyOneCardFaceUp {
+                if cards[potentialMatchIndex].content == cards[chosenIndex].content {
+                    cards[potentialMatchIndex].isMatched = true
+                    cards[chosenIndex].isMatched = true
+                    // increse score
+                    score += 2
+                }
+                self.cards[chosenIndex].isFaceUp = true
+                self.cards[chosenIndex].isSeen = true
+            } else {
+                if cards[chosenIndex].isSeen {
+                    score -= 1
+                }
+                oneAndOnlyOneCardFaceUp = chosenIndex
+            }
+        }
+    }
+    
+    init(numberOfPairsOfCards: Int, themeName: String, cardContentFactory: (Int) ->CardContent) {
         cards = Array<Card>()
+        self.themeName = themeName
         for cardNumber in 0..<numberOfPairsOfCards {
             // Card will generate randamly so cardnumber passing is not required
             let content = cardContentFactory(cardNumber)
@@ -29,10 +57,14 @@ struct MemoryGame<CardContent> {
     }
     
     struct Card: Identifiable {
-        var isFaceUp: Bool = true
+        var isFaceUp: Bool = false
         var isMatched: Bool = false
         var content: CardContent
         var id =  UUID()
+        var isSeen = false
     }
     
+    
 }
+
+

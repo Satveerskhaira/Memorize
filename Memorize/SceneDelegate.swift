@@ -20,6 +20,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
+        // Create themes
+        
+            var themes = [Theme]()
+            themes.append(Theme(name: "Halloween", numberOfCards: 8, emoji: ["👻","🎃","☠️","💀","😈","✂️","👣","🧟‍♀️","🧟‍♂️","🦹🏿‍♀️","🥼","🦹🏻‍♂️","💉"], color: .orange))
+            themes.append(Theme(name: "Faces" , numberOfCards: 12, emoji: ["😀","😁","😅","😂","🤣","😇","🙃","😌","😚","😛","😝","🤪","🤨","😎","🤩","🧐","😖","😭","🥳","😣","😳","😠"], color: .blue))
+            themes.append(Theme(name: "Flags", numberOfCards: 6, emoji: ["🇹🇩","🇲🇷","🇲🇻","🏁","🇨🇦","🇹🇹","🇹🇼","🇦🇺","🇯🇲","🇻🇳","🇨🇭","🇹🇭","🇦🇹","🇹🇯","🇨🇷","🇨🇨","🇬🇧"], color: .gray))
+            themes.append(Theme(name: "Games", numberOfCards: 10, emoji: ["⚽️","🏀","🏈","⚾️","🎱","🏓","🏸","🏒","🏏","⛳️","🪁","🎣","🥊","⛸","🥌","⛷","🚴‍♀️","🛹","🏐","🏉","🥏","🏂","🏹"], color: .blue))
+            themes.append(Theme(name: "Symbols", numberOfCards: 6, emoji: ["®","©","℗","№","℔","℥","ℨ","ℬ","µ","Ω","ℹ︎","ℌ","ℑ","℞","ℳ","℀","℁","℅","℆","™","℠"], color: .red))
+            themes.append(Theme(name: "Animals", numberOfCards: 10, emoji: ["🐶","🐱","🐭","🐹","🐰","🦊","🐻","🐼","🐨","🐯","🦁","🐮","🐷","🐸","🐵","🦄","🐙","🦕","🦑","🦉","🦞","🐒"], color: .yellow))
+    
+        
         // Add emogi memory game
         let emojiMemoryGame = EmojiMemoryGame()
         let contentView = EmojiMemoryGameView(viewModel: emojiMemoryGame)
