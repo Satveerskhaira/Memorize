@@ -10,7 +10,7 @@ import Foundation
 
 struct MemoryGame<CardContent> where CardContent: Equatable {
     var cards: [Card]
-    var themeName: String
+    var theme: Theme
     var score: Int = 0
     
     var oneAndOnlyOneCardFaceUp: Int? {
@@ -44,9 +44,9 @@ struct MemoryGame<CardContent> where CardContent: Equatable {
         }
     }
     
-    init(numberOfPairsOfCards: Int, themeName: String, cardContentFactory: (Int) ->CardContent) {
+    init(numberOfPairsOfCards: Int, theme: Theme, cardContentFactory: (Int) ->CardContent) {
         cards = Array<Card>()
-        self.themeName = themeName
+        self.theme = theme
         for cardNumber in 0..<numberOfPairsOfCards {
             // Card will generate randamly so cardnumber passing is not required
             let content = cardContentFactory(cardNumber)
