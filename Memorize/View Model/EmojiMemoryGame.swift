@@ -12,7 +12,7 @@ class EmojiMemoryGame: ObservableObject {
     @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame(with: EmojiMemoryGame.themes.randomElement()!)
 
     // Convenient method to create game model - change to init in future
-    static func createMemoryGame(with theme: Theme) -> MemoryGame<String> {
+    private static func createMemoryGame(with theme: Theme) -> MemoryGame<String> {
         return MemoryGame<String>(numberOfPairsOfCards: (theme.numberOfCards ?? Int.random(in: 4..<8)) , theme: theme) { pairIndex in
             return theme.emoji.shuffled()[pairIndex]
         }
